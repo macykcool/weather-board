@@ -5,7 +5,17 @@ var searchBtnEl = document.getElementById('search-btn');
 var searchHistoryEl = document.getElementById('recent-search');
 // var favesEl = document.getElementById('current-weather');
 
-//call city first as function this workssss yassss bless Hector
+
+//console log city name for 1st api
+searchBtnEl.addEventListener('click', function(event) {
+    event.preventDefault();
+   console.log(searchInputEl.value);
+});
+
+//initiates 1st api
+searchBtnEl.addEventListener('click', getApi);
+
+//call city first as function 
 function getApi () {
     var geoApi = "http://api.openweathermap.org/geo/1.0/direct?q="+searchInputEl.value+"&appid="+apiKey;
     fetch(geoApi)
@@ -15,10 +25,11 @@ function getApi () {
 .then(function(data) {
     console.log(data);
     getApi2((data[0].lat), (data[0].lon))
+
 });
 }
 
-
+//after city is calles, pass that thru to api 2
 function getApi2(lat, lon) {
    var apiCall = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=imperial&appid="+apiKey;
     fetch(apiCall)
@@ -27,6 +38,7 @@ function getApi2(lat, lon) {
    })
    .then(function(data) {
     console.log(data);
+    
 
     //  for (var i = 0; i < data.length; i++) {
     //    var listEl = document.createElement('li');
@@ -37,25 +49,17 @@ function getApi2(lat, lon) {
    });
 }
 
-searchBtnEl.addEventListener('click', getApi);
+
+
+// idkw hats this doing
+
+// var fetchButton = document.getElementById('search-button');
 
 
 
 
 
-searchBtnEl.addEventListener('click', function(event) {
-    event.preventDefault();
-    // var key = searchInputEl.value;
-   console.log(searchInputEl.value);
-  
-   
     // var listEl = document.createElement('li');
     // listEl.innerHTML = "<div >"
     // listEl.textContent = searchInputEl.value;
     // searchHistoryEl.appendChild(listEl);
-    
-});
-
-
-var fetchButton = document.getElementById('search-button');
-

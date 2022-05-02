@@ -124,79 +124,23 @@ function getApi2(lat, lon) {
 function storeData(cityName, temperature, wind, humidity, uvi) {
     let weatherObject = {
         cityName: "",
-        temperature: {},
+        temperature: "",
         wind: {},
         humidity: {},
         uvi: {},
     }
-    weatherObject.cityName = cityName
-    weatherObject.temperature = temperature
-    weatherObject.wind = wind
-    weatherObject.humidity = humidity
-    weatherObject.uvi = uvi
+    weatherObject.cityName = searchInputEl.value
+    weatherObject.temperature = cdtempEl
+    weatherObject.wind = cdwindEl
+    weatherObject.humidity = cdhumidEl
+    weatherObject.uvi = cduviEl
     storeWeather.push(weatherObject)
     localStorage.setItem('weather', JSON.stringify(storeWeather))
 }
 
-// dynamically created buttons that have the textContent from the locally stored searches
-function buttonList() {
-    var newArr = []
-    for (var i = 1; i < storeWeather.length; i++){
-        console.log(storeWeather[i].cityName)
-        if(newArr.indexOf(storeWeather[i]) === -1){
-            newArr.push(storeWeather[i]);
-            var cityList = document.createElement('button');
-            cityList.textContent = storeWeather[i].cityName;
-            searchHistoryEl.appendChild(cityList)
-        }
-    };
-}
 
 
 
 
 
-//LOCALSTORAGE ZONE
-// var temp = 
-// var 
-// for (var i = 0; i < recentHistory.length; i++
-
-
-
-
-// dleet belows
-
- //  for (var i = 0; i < data.length; i++) {
-    //    var listEl = document.createElement('li');
-    //    listEl.innerHTML = "<div >"
-    //    listEl.textContent = searchInputEl.value;
-    //    searchHistoryEl.appendChild(listEl);
-
-// var fetchButton = document.getElementById('search-button');
-
-    // var listEl = document.createElement('li');
-    // listEl.innerHTML = "<div >"
-    // listEl.textContent = searchInputEl.value;
-    // searchHistoryEl.appendChild(listEl);
-
-    //5day api
-
-// function getApi3(lat, lon) {
-//     var fiveApi = "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&exclude=hourly,current,minutely&cnt=5&units=imperial&appid="+apiKey;
-//     fetch(fiveApi)
-//     .then(function(response) {
-//         return response.json();
-//     })
-   
-//         .then(function (data) {
-//             console.log(data);
-//             // .then(function (data) {
-//             //     // f1icon.textContent = searchInputEl.value;
-//             //     f1tempEl.textContent = data.list.0.
-//             //     f1windEl.textContent = data.current.wind_speed;
-//             //     f1humidEl.textContent = data.current.humidity;
-//             // });
-//         });
-
-// }
 

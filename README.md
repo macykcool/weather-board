@@ -7,8 +7,11 @@ To display Current Weather and 5 day forecast. Have previous cities available an
 
 ## Deployed URL
 
+https://macykcool.github.io/weather-board/
 
 ## Github Repository
+
+https://github.com/macykcool/weather-board
 
 ## Built With
 - Openweather API
@@ -22,4 +25,5 @@ To display Current Weather and 5 day forecast. Have previous cities available an
 ## Contribution
 - Made with ❤️️ by Macy Mannix
 - Mentored by UC Davis Full Stack Web Developer Bootcamp
+
 

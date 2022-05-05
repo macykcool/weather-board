@@ -60,8 +60,26 @@ searchBtnEl.addEventListener('click', function(event) {
 searchBtnEl.addEventListener('click', getApi);
 
 //call city first as function 
-function getApi () {
-    var geoApi = "http://api.openweathermap.org/geo/1.0/direct?q="+searchInputEl.value+"&appid="+apiKey;
+function getApi (event) {
+    var city;
+    if(event.target.value != "" ) {
+        city = event.target.value;
+    }
+    else{
+        storeWeather.push(searchInputEl.value);
+        localStorage.setItem('weather', JSON.stringify(storeWeather));
+        city=searchInputEl.value;
+        if(storeWeather.includes(city) == false ) {
+            var btn = document.createElement("button");
+    btn.innerText = city;
+    btn.value = city;
+    btn.addEventListener('click', getApi)
+    searchHistoryEl.appendChild(btn);
+    var br = document.createElement("br");
+    searchHistoryEl.appendChild(br);
+        }
+    }
+    var geoApi = "http://api.openweathermap.org/geo/1.0/direct?q="+city+"&appid="+apiKey;
 fetch(geoApi)
 .then(function(response) {
     return response.json();
@@ -74,6 +92,18 @@ fetch(geoApi)
 
 // getting data from localStorage
 let storeWeather = JSON.parse(localStorage.getItem('weather')) || [];
+
+// forloop thats global and runs when page loads
+
+for (let i = 0; i < storeWeather.length; i++) {
+    var btn = document.createElement("button");
+    btn.innerText = storeWeather[i];
+    btn.value = storeWeather[i];
+    btn.addEventListener('click', getApi)
+    searchHistoryEl.appendChild(btn);
+    var br = document.createElement("br");
+    searchHistoryEl.appendChild(br);
+}
 
 //after city is called, pass that thru to api 2
 function getApi2(lat, lon) {
@@ -121,21 +151,12 @@ function getApi2(lat, lon) {
 
 
 // creating the search history that will be saved in localStorage
-function storeData(cityName, temperature, wind, humidity, uvi) {
+function storeData(cityName) {
     let weatherObject = {
         cityName: "",
-        temperature: "",
-        wind: {},
-        humidity: {},
-        uvi: {},
     }
     weatherObject.cityName = searchInputEl.value
-    weatherObject.temperature = cdtempEl
-    weatherObject.wind = cdwindEl
-    weatherObject.humidity = cdhumidEl
-    weatherObject.uvi = cduviEl
-    storeWeather.push(weatherObject)
-    localStorage.setItem('weather', JSON.stringify(storeWeather))
+ 
 }
 
 

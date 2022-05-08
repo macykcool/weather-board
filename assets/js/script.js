@@ -1,4 +1,4 @@
-var recentHistory = []
+// var recentHistory = []
 var apiKey = "aecaeed4eefe593c25f498d7c5899d1c";
 var searchFormEl = document.getElementById('search-bar');
 var searchInputEl = document.getElementById('city-input');
